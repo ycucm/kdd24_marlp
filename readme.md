@@ -2,7 +2,7 @@
 
 🌊 Welcome to the MARLP repository, featuring the official implementation of the paper, "MARLP: Time-series Forecasting Control for Agricultural Managed Aquifer Recharge."
 
-☀️ Horray! The trial of Year 2024 is finished! We will finalize the repo with a detailed instruction in April! 
+☀️ Hooray! The trial of Year 2024 is finished! We will finalize the repo with a detailed instruction in April! 
 
 ## 1 Abstract
 
@@ -13,13 +13,13 @@ This paper proposes MARLP, the first end-to-end data-driven control system for A
 ## 2 Dataset
 
 Ag-MAR dataset contains data from 2020 to 2024. The files ended with '_wf_raw.csv' means it has weather forecast data.  The files ended with '_wf720.csv' means the timestamps are moved up for 720, to align the weather forecast input with historical input.
-| Year | Area (ft²)    | Flooding Duration | Sequence |
-|------|---------------|-------------------|----------|
-| 2020 | 590\*280      | 2/20-4/2          | 6086     |
-| 2021 | 590\*280      | 2/12-3/31         | 6902     |
-| 2022 | 590\*280      | 1/19-4/8          | 11455    |
-| 2023 | 284\*132      | 2/28-4/6          | 5389     |
-| 2024 | 150\*100      | 2/8-4/7           | 8642     |
+| Year | Flooding Duration | Sequence |
+|------|-------------------|----------|
+| 2020 | 2/20-4/2          | 6086     |
+| 2021 | 2/12-3/31         | 6902     |
+| 2022 | 1/19-4/8          | 11455    |
+| 2023 | 2/28-4/6          | 5389     |
+| 2024 | 2/8-4/7           | 8642     |
 
 ## 3 MPC Workflow
 
