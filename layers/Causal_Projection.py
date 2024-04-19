@@ -4,33 +4,35 @@ import torch.nn.functional as F
 
 
 class CausalProjectionLayer(nn.Module):
-    def __init__(self, d_model, p_steps):
+    def __init__(self, d_model, p_steps, sequence_length):
         super(CausalProjectionLayer, self).__init__()
-        # Linear parameters for Granger causality model, these would need to be learned
         self.A = nn.Parameter(torch.randn(p_steps, d_model))
         self.A_prime = nn.Parameter(torch.randn(p_steps, d_model))
+        self.delta_t = nn.Parameter(torch.ones(sequence_length, 1))
 
-    def forward(self, x, delta_t):
-        # Apply the Granger causality equation to the input
+    def forward(self, x, update_delta=False):
         B, L, D = x.shape
         p_steps = self.A.shape[0]
 
-        # Ensure delta_t has the same sequence length as the input
-        delta_t = delta_t.expand(L, -1).transpose(0, 1)
+        delta_t_expanded = self.delta_t.expand(L, B, D).permute(1, 0, 2)
 
-        # Apply Granger causality model
         delta_x = torch.zeros_like(x)
         for j in range(1, p_steps + 1):
-            # The paper seems to describe a difference, so we'll need to calculate delta_x
-            # This is a simplified version assuming x is some form of time series data
             delta_x[:, j:, :] = x[:, j:, :] - x[:, :-j, :]
-            delta_x[:, :j, :] = 0  # Can't compute delta for the first 'j' timesteps
+            delta_x[:, :j, :] = 0
 
-            # Accumulate the effects as per the causality equation
-            x = x + self.A[j-1].unsqueeze(0) * delta_x
-            # Calculate the derivative as well (here, assumed to be the difference across time)
-            # This is an approximation, in practice you might calculate this differently
-            derivative = delta_x / delta_t
-            x = x + self.A_prime[j-1].unsqueeze(0) * derivative
+            x = x + self.A[j-1].unsqueeze(0).unsqueeze(2) * delta_x
+
+            derivative = delta_x / delta_t_expanded
+            x = x + self.A_prime[j-1].unsqueeze(0).unsqueeze(2) * derivative
+
+        if update_delta:
+            delta_t_loss = self.calculate_delta_t_loss(x, target)
+            self.delta_t.grad = torch.autograd.grad(delta_t_loss, self.delta_t, create_graph=True)[0]
+            self.delta_t.data = self.delta_t.data - learning_rate * self.delta_t.grad
 
         return x
+
+    def calculate_delta_t_loss(self, predictions, target):
+        loss = F.mse_loss(predictions, target)
+        return loss
