@@ -23,7 +23,7 @@ Ag-MAR dataset contains data from 2020 to 2024. The files ended with '_wf_raw.cs
 
 ## 3 MPC Workflow
 
-For each 10 minutes, the sensor data and weather forecasts are processed in real-time. The Then the oxygen forecasting module makes inferences for all flooding proposals and accordingly, the best proposal would be selected. This process constitutes a standardized control workflow.
+For each 10 minutes, the sensor data and weather forecasts are processed in real-time. Then the oxygen level curves are inferred for all flooding proposals. Accordingly, the best proposal would be selected and executed. This process constitutes a standardized control workflow.
 
 ## 4 Causal Projection Module
 
