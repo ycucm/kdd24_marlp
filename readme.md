@@ -19,7 +19,7 @@ Ag-MAR dataset contains data from 2020 to 2024. The files ended with '_wf_raw.cs
 | 2021 | 2/12-3/31         | 6902     |
 | 2022 | 1/19-4/8          | 11455    |
 | 2023 | 2/28-4/6          | 5389     |
-| 2024 | 2/8-4/7           | 8642     |
+| 2024 | 1/19-4/4          | 11001    |
 
 ## 3 MPC Workflow
 
