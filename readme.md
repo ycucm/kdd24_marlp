@@ -1,6 +1,6 @@
 ## MARLP: Time-series Forecasting Control for Agricultural Managed Aquifer Recharge
 
-🌊 Welcome to the MARLP repository, featuring the official implementation of the paper, "MARLP: Time-series Forecasting Control for Agricultural Managed Aquifer Recharge."
+🌊 Welcome to the MARLP repository, featuring the official implementation of the KDD 2024 paper, "MARLP: Time-series Forecasting Control for Agricultural Managed Aquifer Recharge."
 
 ☀️ Hooray! The trial of Year 2024 is finished!
 
